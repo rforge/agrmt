@@ -1,9 +1,0 @@
-Package: agrmt
-Type: Package
-Title: Calculates agreement "A"
-Version: 0.5
-Date: 2012-01-03
-Author: Didier Ruedin
-Maintainer: Didier Ruedin <didier.ruedin@wolfson.oxon.org>
-Description: This package calculates agreement in ordered rating scales. It implements van der Eijk's (2001) measure of agreement "A", which can be used to describe agreement, consensus, or polarization among respondents.
-License: GPL-3
