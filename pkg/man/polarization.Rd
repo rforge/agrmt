@@ -1,12 +1,8 @@
 \name{polarization}
 \alias{polarization}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+\title{Function to calculate polarization}
+\description{Calculates polarization, based on measure or agreement "A"}
 \usage{
 polarization(V, old = FALSE)
 }
@@ -32,9 +28,7 @@ polarization(V, old = FALSE)
 \references{
 %% ~put references to the literature/web site here ~
 }
-\author{
-%%  ~~who you are~~
-}
+\author{Didier Ruedin}
 \note{
 %%  ~~further notes~~
 }
