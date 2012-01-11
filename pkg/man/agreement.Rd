@@ -1,72 +1,21 @@
 \name{agreement}
 \alias{agreement}
-\alias{consensus}
-\alias{polarization}
-\title{Function to calculate van der Eijk's measure of agreement "A"}
-\description{ This package calculates agreement in ordered rating scales. It implements van der Eijk's (2001) measure of agreement "A", which can be used to describe agreement, consensus, or polarization among respondents.}
-\usage{
-agreement(V, old = FALSE)
-}
-%- maybe also 'usage' for other objects documented here.
+\title{Calculate van der Eijk's measure of agreement "A"}
+\description{Calculate agreement in ordered rating scales. This function implements van der Eijk's (2001) measure of agreement "A", which can be used to describe agreement, consensus, or polarization among respondents.}
+\usage{agreement(V, old = FALSE)}
 \arguments{
-  \item{V}{A frequency vector.
-%%     ~~Describe \code{V} here~~
+  \item{V}{A frequency vector}
+  \item{old}{Optional argument if you wish to use the old algorithm for agreement "A", as outlined in van der Eijk's article. There is normally no reason to set the \code{old} argument.}
 }
-  \item{old}{Optional argument if you wish to use the old algorithm for agreement "A", as outlined in endnote XXX of the van der Eijk article. There is normally no reason to set the \code{old} argument.
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{ The function returns the measure of agreement "A"
-}
-\references{
-van der Eijk's (2001)
-}
-\author{ Didier Ruedin
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\details{This is the main function to calculate agreement. A frequency vector describes the number of observations in a given category. For example, the vector [10,20,30,15,4] describes 10 observations with position 1, 20 observations with position 2, 30 obervations with position 3, 15 observations with position 4, and 4 observations with position 5. At least three categories are required to calculate agreement.}
+\value{The function returns the measure of agreement "A"}
+\references{van der Eijk, C. (2001) "Measuring agreement in ordered rating scales" Quality and Quantity 35(3):325-341.}
+\author{Didier Ruedin}
+\seealso{\code{\link{polarization}}}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (V, old = FALSE)
-{
-    if (length(V) < 3) {
-        warning("Warning: length of vector < 3, agreement A is not defined.")
-        return(NA)
-    }
-    if (min(V) < 0)
-        stop("Error: negative values found in frequency vector.")
-    AA <- 0
-    k <- length(V)
-    N <- sum(V)
-    R <- V
-    for (i in 1:k) {
-        P <- pattern.vector(R)
-        if (max(P) == 0)
-            break
-        A <- pattern.agreement(P, old)
-        m <- min.nz(R)
-        L <- P * m
-        w <- sum(L)/N
-        AA <- AA + w * A
-        R <- R - L
-    }
-    return(AA)
-  }
+# Sample data
+V <- c(30,40,210,130,530,50,10)
+# Calculate agreement "A"
+agreement(V)
+# The rate of agreement is given as 0.6113333
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -3,33 +3,12 @@
 \alias{agrmt}
 \docType{package}
 \title{Calculated agreement "A"}
-\description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
-}
-\details{
-\tabular{ll}{
-Package: \tab agrmt\cr
-Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2012-01-03\cr
-License: GPL-3\cr
-}
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
-}
-\author{
-Who wrote it
+\description{This package calculates agreement in ordered rating scales. It implements van der Eijk's (2001) measure of agreement "A", which can be used to describe agreement, consensus, or polarization among respondents.}
+\details{The main functions in this package are \code{\link{agreement}} to calculate agreement "A", and  \code{\link{polarization}} to calculate a polarization score based on agreement "A".}
+\author{Didier Ruedin
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer: Didier Ruedin <didier.ruedin@wolfson.oxon.org>
 }
-\references{
-~~ Literature or other references for background information ~~
-}
+\references{van der Eijk, C. (2001) "Measuring agreement in ordered rating scales" Quality and Quantity 35(3):325-341.}
 \keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
 \examples{}

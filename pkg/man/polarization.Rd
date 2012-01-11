@@ -1,56 +1,20 @@
 \name{polarization}
 \alias{polarization}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{Function to calculate polarization}
-\description{Calculates polarization, based on measure or agreement "A"}
-\usage{
-polarization(V, old = FALSE)
-}
-%- maybe also 'usage' for other objects documented here.
+\title{Calculate polarization}
+\description{Calculates polarization, based on measure of agreement "A"}
+\usage{polarization(V, old = FALSE)}
 \arguments{
-  \item{V}{
-%%     ~~Describe \code{V} here~~
+  \item{V}{A frequency vector}
+  \item{old}{Specify \code{old=TRUE} to use the depreciated algorithm for agreement "A"}
 }
-  \item{old}{
-%%     ~~Describe \code{old} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
+\details{This function calculates polarization by rescaling agreement "A" introduced by Cees van der Eijk. Whereas agreement "A" ranges from -1 to 1, polarization ranges from 0 to 2. If all observations are in the same category, polarization is 0. With half the observations in one category, and half the observations in a different (non-neighbouring) category, polarization is 2. Polarization is 1 for a uniform distribution over all categories.}
+\value{The function returns a polarization score}
 \author{Didier Ruedin}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\seealso{\code{\link{agreement}}}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (V, old = FALSE) 
-{
-    p <- 2 - (agreement(V, old) + 1)
-    return(p)
-  }
+V <- c(30,40,210,130,530,50,10)
+# Calculate polarizaiton
+polarization(V)
+# The rate of polarization is given as 0.3886667
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+
