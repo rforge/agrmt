@@ -1,0 +1,42 @@
+AJUS <-
+function(V, tolerance=0.1) {
+  # Determine the shape of a distribution
+  # Arguments:         V = frequency vector
+  #            tolerance = tolerance (in %)
+  # Example: V <- c(30,40,210,130,530,50,10)
+  if (min(V) < 0) stop("Error: negative values found in frequency vector.") # input validation
+  # (1) identify patterns: 0 flat, 1 increase, -1 decrease
+  n <- length(V)    # number of items
+  z <- n-1          # number of breaks
+  if (n < 3) stop("Error: too few values to classify distribution.") # input validation
+  x <- NULL         # prepare
+  for (i in 1:z) {
+    x[i] <- compare.values(V[i],V[i+1], tolerance=tolerance)
+    }
+  # Example vector V gives x = c(1  1 -1  1 -1 -1)
+  # or with tolerance=.5:  x = c(0  1  0  1 -1 -1)
+  # (2) identify shape
+  min.x <- min(x)
+  max.x <- max(x)
+  if (min.x == max.x) A <- "F" else {    # flat distribtion, type F not in AJUS
+    if (max.x <  1) A <- "J" else {      # no 1,  thus only 0 or + 1 (single peak at left end)
+      if (min.x > -1) A <- "J"  else {   # no -1, thus only 0 or 1   (single peak at right end)
+        xs <- reduce.vector(x)           # remove 0 and repeated values; not use unique(), because I want same values at different positions ("type S")
+        if (isTRUE(all.equal(xs,c(1,-1)))) A <- "A" else {
+          # isTRUE(all.equal(V[i],m)
+          if (isTRUE(all.equal(xs,c(-1,1)))) A <- "U" else A <- "S"
+        }
+      }
+    }
+  }
+  # F if: flat, no peak;                polarization; all 0
+  # A if: unimodal, peak in the middle; consensus;    0 or +1, then 0 or -1
+  # J if: unimodal, peak at either end; consensus;    0 or + 1, xor 0 or -1
+  # U if: bimodal,  peak at both ends;  polarization; 0 or -1, then 0 or +1
+  # S if: bimodal,  multiple peaks;     polarization; else
+  # (3) identify skew
+  m <- round(n/2,0) # midpoint of vector V
+  S <- compare.values(sum(V[1:m]),sum(V[m:n]), tolerance=tolerance) # S = skew [-1,0,+1] (negative, symmetric, positive)
+  r <- list(type= A, skew = S)
+  return(r)
+  }

@@ -17,4 +17,3 @@ V <- c(30,40,210,130,530,50,10)
 polarization(V)
 # The rate of polarization is given as 0.3886667
 }
-
