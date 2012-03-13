@@ -1,7 +1,7 @@
 \name{modes}
 \alias{modes}
 \title{Identify multiple modes}
-\description{Identifies (multiple) modes for frequency vectors.}
+\description{Identifies (multiple) modes in a frequency vector.}
 \usage{modes(V, tolerance=0)}
 \arguments{
   \item{V}{A frequency vector}
