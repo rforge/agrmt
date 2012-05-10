@@ -16,7 +16,7 @@ function(V, old=FALSE) {
       P <- pattern.vector(R)         # get the pattern vector for layer i
       if (max(P) == 0) break         # remainder is empty, all layers are analyzed
       A <- pattern.agreement(P, old) # agreement A for layer i
-      m <- min.nz(R)                # get non-zero minimum of remainder R
+      m <- minnz(R)                  # get non-zero minimum of remainder R
       L <- P * m                     # layer i with the values
       w <- sum(L)/N                  # weight of layer i
       AA <- AA + w * A               # adding agreement of layer i to overall agreement

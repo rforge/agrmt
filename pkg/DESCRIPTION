@@ -1,8 +1,8 @@
 Package: agrmt
 Type: Package
 Title: Calculates agreement "A"
-Version: 0.6
-Date: 2012-01-20
+Version: 0.7
+Date: 2012-05-11
 Author: Didier Ruedin
 Maintainer: Didier Ruedin <didier.ruedin@wolfson.oxon.org>
 Description: This package calculates agreement in ordered rating scales. It implements van der Eijk's (2001) measure of agreement "A", which can be used to describe agreement, consensus, or polarization among respondents. It also implements Galtungs AJUS-system to classify distributions, and a function to identify the position of multiple modes.
