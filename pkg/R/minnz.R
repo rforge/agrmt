@@ -1,4 +1,4 @@
-min.nz <-
+minnz <-
 function(V) {
    # Calculates the smallest value of the vector except for 0 (non-zero minumum)
    # Argument: vector
