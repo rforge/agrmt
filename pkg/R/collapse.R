@@ -16,6 +16,7 @@ function(D, pos=FALSE) {
      F <- rep(0,k)     # empty with length(k)
      V <- unique(D)    # chooses the categories (positions) of the values in F2
      V <- V[!is.na(V)] # remove NA from unique values
+     V <- sort(V)      # keeping order that is messed up by the preceding line
      m <- length(V)    # number of non-zero values to be filled into F
      for(i in 1:m) {
         for(j in 1:k) {
