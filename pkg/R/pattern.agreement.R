@@ -5,6 +5,7 @@ function(P, old=FALSE) {
    #            old = use old Unimodality algorithm (passed on)
    # Example: Second pattern on p.333: P <- c(1,0,1,0,0,0,0)
    if (max(P) > 1) stop("Error: Input is not a pattern vector (only 0 and 1 are allowed).")
+   # This error should never occur unless the function is called directly.
    K <- length(P)                     # number of categories
    # Counting triplets
    TDU <- 0                           # begin with count = 0, prepare

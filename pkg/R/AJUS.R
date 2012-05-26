@@ -8,7 +8,9 @@ function(V, tolerance=0.1) {
   # (1) identify patterns: 0 flat, 1 increase, -1 decrease
   n <- length(V)    # number of items
   z <- n-1          # number of breaks
-  if (n < 3) stop("Error: too few values to classify distribution.") # input validation
+  if (n < 3) {warning("Warning: too few values to classify distribution.") # input validation
+      r <- list(type= NA, skew = NA) # returning NA for both type and skew (so we can use AJUS()$type)
+      return(r)}
   x <- NULL         # prepare
   for (i in 1:z) {
     x[i] <- compare.values(V[i],V[i+1], tolerance=tolerance)

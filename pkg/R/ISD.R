@@ -4,7 +4,9 @@ function(V, tolerance=0.1) {
   # Arguments:         V = vector with values at 3 time points (transition points)
   #            tolerance = tolerance (in %)
   # Example: V <- c(10,10,0)
-  if (!length(V) == 3) stop("Error: no vector with three time points.") # input validation
+  if (!length(V) == 3) {warning("Warning: no vector with three time points.") # input validation
+      r <- list(type= NA, description = NA) # returning NA for both type and skew (so we can use ISD()$type)
+      return(r)}
   x    <- NULL
   x[1] <- compare.values(V[1],V[2], tolerance=tolerance)
   x[2] <- compare.values(V[2],V[3], tolerance=tolerance)

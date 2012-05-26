@@ -8,6 +8,7 @@ function(V, old=FALSE) {
       warning("Warning: length of vector < 3, agreement A is not defined.")
       return(NA)}
    if (min(V) < 0) stop("Error: negative values found in frequency vector.")
+   # This error only occurs if the input is not a frequency vector. Use collapse() to generate a frequency vector.
    AA <- 0        # begin with empty agreement A (overall), prepare
    k <- length(V) # number of categories
    N <- sum(V)    # number of cases

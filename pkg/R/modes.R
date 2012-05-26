@@ -7,6 +7,7 @@ function(V, tolerance=0) {
   # Note: if there are two modes of different values, only the first one will be reported:
   # e.g. V <- (1,2,1,3,2) will report mode = 1.
   if (min(V) < 0) stop("Error: negative values found in frequency vector.")      # input validation
+  # This error only occurs if the input is not a frequency vector. Use collapse() to generate a frequency vector.
   k <- length(V)  # number of values
   p <- NULL       # empty for preparation
   u <- unique(V)  # remove duplicates of V
