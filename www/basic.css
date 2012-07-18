@@ -15,20 +15,20 @@ padding: 0px;
 h1, h2, h3 {
 padding: 10px;
 margin: 0px;
-color: #8B008B;
-background-color: #C1CDCD;
+color: #000000;
+background-color: #1F1FFF;
 }
 
 h3 {
 padding: 5px;
 margin-top: 10px;
-background-color: #838B8B;
+background-color: #9999FF;
 }
 
 p#footer {
 margin: 0px;
 width: 100%;
-background-color: #838B8B;
+background-color: #9999FF;
 }
 -->
 </style>
