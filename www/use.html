@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Agreement A in R</title>
+<link rel="stylesheet" href="basic.css" type="text/css" /></head>
+<body>
+<div id="Header">
+<a href="index.html" title="Home">Agreement A in R</a>
+</div>
+<div id="Content">
+<h2 class="top">Agreement</h2>
+<p>Van der Eijk gives the example of respondents placing political parties on a 7-point rating scale.</p>
+<table border="0" cellpadding="2"><tr><td>Position</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td></tr>
+<tr><td>PvdA</td><td>2.4%</td><td>2.8%</td><td>3.2%</td><td>6.2%</td><td>13.5%</td><td>30.4%</td><td>41.6%</td></tr>
+<tr><td>D66</td><td>1.6%</td><td>2.6%</td><td>8.2%</td><td>21%</td><td>29.3%</td><td>27%</td><td>10.3%</td></tr>
+</table>
+<p>To calculate the level of agreement for these two frequency distribution, we simply type <tt>agreement(c(2.4,2.8,3.2,6.2,13.5,30.4,41.6))</tt> for the PvdA, and <tt>agreement(c(1.6,2.6,8.2,21,29.3,27,10.3))</tt> for the D66. This gives us levels of agreement of 0.61 for the PvdA, and 0.48 for the D66.<br><br>
+We can also calculate the level of agreement for the frequency distribution used in the above section: <tt>agreement(c(30,40,210,130,530,50,10))</tt>, which gives a value of 0.61.<br><br>
+If we have not already calculated the frequency distributions (i.e. how many responses in which category), we could use the <tt>table</tt> command in R to get the frequencies. To avoid additional steps, the function <tt>collapse</tt> is provided. If we have the responses [1,2,4,2,5,2,3,1,2,1,3,2,4,1,5,2,3,2,4,2,3,1,1,3], the function gives you the frequencies. Use <tt>collapse(c(1,2,4,2,5,2,3,1,2,1,3,2,4,1,5,2,3,2,4,2,3,1,1,3))</tt> to get the frequencies [6 8 5 3 2], indicating that there are 6 responses in category 1, 8 in category 2, etc. We can then use this with the <tt>agreement</tt> function: <tt>agreement(collapse(c(1,2,4,2,5,2,3,1,2,1,3,2,4,1,5,2,3,2,4,2,3,1,1,3)))</tt> to give a value of 0.31. Typically, we use the variable name here (e.g. POSITION): <tt>collapse(POSITION)</tt>.<br><br>
+An important advantage of using the <tt>collapse</tt> function over the built-in <tt>table</tt> function is that it can deal with categories with 0 responses. In this case, you need to specify the position at which categories exist, using the <tt>pos=</tt> argument. If we have the responses [1,2,4,2,5,2,7,7,3,1,2,1,3,2,4,1,5,2,3,2,4,2,3,1,1,3], both the <tt>table</tt> and the <tt>collapse</tt> function give us the following frequencies [6 8 5 3 2 2]. There are no responses with position 6. We can tell the <tt>collapse</tt> function that there are 7 response categories by specifying the positions at which categories exist: <tt>collapse(c(1,2,4,2,5,2,7,7,3,1,2,1,3,2,4,1,5,2,3,2,4,2,3,1,1,3), pos=1:7)</tt>. I can also use <tt>c(1,2,3,4,5,6,7)</tt> instead of the <tt>1:7</tt>. This time I get [6 8 5 3 2 0 2] including the 0 for position 6. To get the level of agreement, this is <tt>agreement(collapse(c(1,2,4,2,5,2,7,7,3,1,2,1,3,2,4,1,5,2,3,2,4,2,3,1,1,3), pos=1:7))</tt>, 0.39.<br><br>
+<b>Typically, we use the variable name (e.g. POSITION): <tt>agreement(collapse(POSITION))</tt>.</b></p>
+
+<h2 class="top">Polarization</h2>
+<p>The <tt>polarization</tt> function simply rescales agreement values to provide a more intuitive interpretation if one is interested in polarization rather than agreement. More precisely, it gives you (1-agreement)/2. This means that a polarization value of 1 means perfect polarization (bottom-left corner of the graph above), and a value of 0 means perfect agreement. A value of 0.5 corresponds to the &quot;no agreement&quot; in the above graph.<br><br>
+Usage is equivalent to <tt>agreement</tt>: <tt>polarization(collapse(c(1,2,4,2,5,2,7,7,3,1,2,1,3,2,4,1,5,2,3,2,4,2,3,1,1,3), pos=1:7))</tt> gives you 0.30. Or we can calculate polarization for the Dutch parties: <tt>polarization(c(2.4,2.8,3.2,6.2,13.5,30.4,41.6))</tt> for the PvdA, and <tt>polarization(c(1.6,2.6,8.2,21,29.3,27,10.3))</tt> for the D66, giving 0.20 and 0.26 respectively.<br><br>
+<b>Typically, we use the variable name (e.g. POSITION): <tt>polarization(collapse(POSITION))</tt>.</b></p>
+
+<h2 class="top">AJUS</h2>
+<p>Galtung introduced a system to classify distributions according to shape. This is a means to reduce complexity.<br>For further details, refer to Galtung, J. 1969. <i>Theory and Methods of Social Research.</i> Oslo: Universitetsforlaget.<br>
+<b><tt>AJUS(distribution)</tt></b> gives you the shape or type, as well as whether there is a skew. I have added a new type &quot;F&quot; to complement the ones identified by Galtung. The skew is given as -1 for a negative skew, 0 for absence of skew, or +1 for a positive skew.</p>
+<ul><li>A: unimodal distribution, peak in the middle</li>
+<li>J: unimodal, peak at either end</li>
+<li>U: bimodal, peak at both ends</Li>
+<li>S: bimodal or multi-modal, multiple peaks</li>
+<li>F: flat, no peak; this type is new</li></ul>
+<p>Galtung developed the AJUS system for a somewhat systematic classification of distributions, but not for the use on computers. The advantage of using a function on the computer is twofold. On the one hand, we can easily apply the AJUS system to many distributions, <tt>sapply</tt> may be your friend there. On the other hand, the tolerance used in th AJUS system is applied in a systematic manner. When using human judgement on whether two values are roughly the same or different, a really systematic approach cannot guaranteed. In the <tt>AJUS</tt> function, you can specify the argument <tt>tolerance</tt> to change the tolerance. I use the <tt>all.equal</tt> function (base package) to determine whether two values are roughly the same.</p>
+
+<h2 class="top">ISD</h2>
+<p>The ISD system by Galtung is another way to reduce complexity, this time for changes over time. The ISD takes a vector with three time points. These three points describe two periods during which changes may occur.<br><b><tt>ISD(distribution)</tt></b> gives you a type and a description of the type.</p>
+<ul><li>Type 1: increase in both periods</li>
+<li>Type 2: increase in first period, flat in second period</li>
+<li>Type 3: increase in first period, decrease in second period</li>
+<li>Type 4: flat in first period, increase in second period</li>
+<li>Type 5: flat in both periods</li>
+<li>Type 6: flat in first period, decrease in second period</li>
+<li>Type 7: decrease in first period, increase in second period</li>
+<li>Type 8: decrease in first period, flat in second period</li>
+<li>Type 9: decrease in both periods</li></ul>
+
+<h2 class="top">(Multiple) Modes</h2>
+<p>The function <tt>modes</tt> tells you at which position the mode is. This can be used, for instance, in conjunction with the <tt>agreement</tt> function to identify at which point agreement is reached (not only that). The functions accept frequency distributions where multiple positions are the most common ones, which can happen in ordered rating scales. The function <tt>second.modes</tt> additionally gives you the value and position(s) of the second most common value. In addition to the mode and the positions, the functions also indicate whether these values are contiguous (i.e. in neighbouring response categories).<br><br>
+<small>Last update 21 July 2012</small></p>
+</div>
+<div id="Menu">
+<a href="index.html" title="Home">Home</a><br>
+<a href="agreement.html" title="Agreement">Agreement</a><br>
+<a href="installation.html" title="Installation">Installation</a><br>
+<a href="use.html" title="Use">Use</a><br>
+<a href="development.html" title="Development">Development</a><br><br>
+<a href="http://r-forge.r-project.org"><img src="logo.png" width="75px" border="0" alt="R-Forge Logo" /></a>
+</div>
+</body></html>
