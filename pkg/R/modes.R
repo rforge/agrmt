@@ -4,11 +4,15 @@ function(V, pos=FALSE, tolerance=0.1) {
   # Arguments:    V = frequency vector
   #             pos = positions of categories
   #       tolerance = tolerance to consider values the same
-  # Example 1: V <- c(30,40,210,130,530,50,10) # will find position 5
-  # Example 2: V <- c(3,0,4,1) # will find position 3
-  # Example 3: V <- c(30,40,528,130,530,50,10) # will find positions 3 and 5 (528 and 530 nearly same)
+  # Example 1: V1 <- c(30,40,210,130,530,50,10) # will find position 5
+  # Example 2: V2 <- c(3,0,4,1) # will find position 3
+  # Example 3: modes(c(3,0,4,1),pos=-1:2) # will still find position 3, but give the value of 1 as mode
+  # Example 4: V3 <- c(30,40,528,130,530,50,10) # will find positions 3 and 5 (528 and 530 nearly same)
   if (min(V) < 0) stop("Error: negative values found in frequency vector.")      # input validation
   # This error only occurs if the input is not a frequency vector. Use collapse() to generate a frequency vector.
+  if (!length(pos) == length(V)) { # input validation
+     warning("Warning: length of position vector different from length of frequency vector. Position vector ignored")
+     pos <- FALSE } # simply ignore it, better than stopping outright
   k <- length(V)  # number of values
   p <- NULL       # empty for preparation
   if (pos[1]==FALSE) if (is.numeric(pos) == FALSE) pos <- 1:k # no positions provided, assume 1:k (no zero)
