@@ -1,11 +1,11 @@
 Package: agrmt
 Type: Package
 Title: Calculate agreement A
-Version: 0.14
-Date: 2012-11-1
+Version: 0.15
+Date: 2012-11-4
 Author: Didier Ruedin
 Maintainer: Didier Ruedin <didier.ruedin@wolfson.oxon.org>
 Description: This package calculates agreement in ordered rating scales. It implements van der Eijk's (2001) measure of agreement A, which can be used to describe agreement, consensus, or polarization among respondents. It also implements Galtungs AJUS-system to classify distributions, and a function to identify the position of multiple modes.
-URL: http://agrmt.r-forge.r-project.org, http://druedin.com
+URL: http://agrmt.r-forge.r-project.org
 License: GPL-3
 
