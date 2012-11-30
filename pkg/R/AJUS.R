@@ -2,7 +2,7 @@ AJUS <-
 function(V, tolerance=0.1) {
   # Determine the shape of a distribution
   # Arguments:         V = frequency vector
-  #            tolerance = tolerance (in %)
+  #            tolerance = tolerance (absolute value)
   # Example: V <- c(30,40,210,130,530,50,10)
   if (min(V) < 0) stop("Error: negative values found in frequency vector.") # input validation
   # (1) identify patterns: 0 flat, 1 increase, -1 decrease

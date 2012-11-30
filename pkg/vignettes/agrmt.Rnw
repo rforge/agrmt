@@ -147,9 +147,7 @@ The package includes a few additional functions for frequency vectors. The AJUS 
 \item F: flat, no peak; this type is new
 \end{itemize}
 
-Galtung developed the AJUS system for a somewhat systematic classification of distributions, but not for the use on computers. The advantage of using a function on the computer is twofold. On the one hand, we can easily apply the AJUS system to many distributions, \texttt{sapply} may be your friend there. On the other hand, the \emph{tolerance} used in the AJUS system is applied in a systematic manner. When using human judgement on whether two values are `roughly the same' or different, a really systematic approach cannot guaranteed. In the AJUS function, you can specify the argument \texttt{tolerance} to change the tolerance. The AJUS function calls the \texttt{all.equal} function (from the base package) to determine whether two values are roughly the same.
-
-Tolerance parameter in the \texttt{all.equal} function is a numeric $/geq$ 0, and differences smaller than the value given are not considered. The package default is 0.1. The \texttt{tolerance} parameter is not a trivial choice, and it can affect result.
+Galtung developed the AJUS system for a somewhat systematic classification of distributions, but not for the use on computers. The advantage of using a function on the computer is twofold. On the one hand, we can easily apply the AJUS system to many distributions, \texttt{sapply} may be your friend there. On the other hand, the \emph{tolerance} used in the AJUS system is applied in a systematic manner. When using human judgement on whether two values are `roughly the same' or different, a really systematic approach cannot guaranteed. In the AJUS function, you can specify the argument \texttt{tolerance} to change the tolerance. The AJUS function ignores all differences euqal to or smaller than the tolerance parameter. The package default is 0.1, possibly useful when working with values between 0 and 1, in which case it corresponds to 10 per cent. The \texttt{tolerance} parameter is not a trivial choice, and it can affect results.
 
 % needs examples for each distribution type, plot some of these
 
@@ -206,8 +204,8 @@ This example illustrates multiple modes. The frequencies o 528 and 530 are nearl
 
 \begin{Scode}{echo=TRUE,fig=FALSE}
 # Example 4: similar values
-V3 <- c(30,40,528,130,530,50,10) 
-modes(V3) # will find positions 3 and 5 (528 and 530 are nearly the same)
+V3 <- c(30,40,510,130,530,50,10) 
+modes(V3, tolerance=30) # will find positions 3 and 5 (510 and 530 are nearly the same)
 \end{Scode}
 
 % needs an example with second.modes

@@ -2,7 +2,7 @@ ISD <-
 function(V, tolerance=0.1) {
   # Classification over time (ISD-system)
   # Arguments:         V = vector with values at 3 time points (transition points)
-  #            tolerance = tolerance (in %)
+  #            tolerance = tolerance (absolute)
   # Example: V <- c(10,10,0)
   if (!length(V) == 3) {warning("Warning: no vector with three time points.") # input validation
       r <- list(type= NA, description = NA) # returning NA for both type and skew (so we can use ISD()$type)
