@@ -26,16 +26,16 @@ Usage is equivalent to <tt>agreement</tt>: <tt>polarization(collapse(c(1,2,4,2,5
 
 <h2 class="top">AJUS</h2>
 <p>Galtung introduced a system to classify distributions according to shape. This is a means to reduce complexity.<br>For further details, refer to Galtung, J. 1969. <i>Theory and Methods of Social Research.</i> Oslo: Universitetsforlaget.<br>
-<b><tt>AJUS(distribution)</tt></b> gives you the shape or type, as well as whether there is a skew. I have added a new type &quot;F&quot; to complement the ones identified by Galtung. The skew is given as -1 for a negative skew, 0 for absence of skew, or +1 for a positive skew.</p>
+<b><tt>ajus(distribution)</tt></b> gives you the shape or type, as well as whether there is a skew. I have added a new type &quot;F&quot; to complement the ones identified by Galtung. The skew is given as -1 for a negative skew, 0 for absence of skew, or +1 for a positive skew.</p>
 <ul><li>A: unimodal distribution, peak in the middle</li>
 <li>J: unimodal, peak at either end</li>
 <li>U: bimodal, peak at both ends</Li>
 <li>S: bimodal or multi-modal, multiple peaks</li>
 <li>F: flat, no peak; this type is new</li></ul>
-<p>Galtung developed the AJUS system for a somewhat systematic classification of distributions, but not for the use on computers. The advantage of using a function on the computer is twofold. On the one hand, we can easily apply the AJUS system to many distributions, <tt>sapply</tt> may be your friend there. On the other hand, the tolerance used in th AJUS system is applied in a systematic manner. When using human judgement on whether two values are roughly the same or different, a really systematic approach cannot guaranteed. In the <tt>AJUS</tt> function, you can specify the argument <tt>tolerance</tt> to change the tolerance. I use the <tt>all.equal</tt> function (base package) to determine whether two values are roughly the same.</p>
+<p>Galtung developed the AJUS system for a somewhat systematic classification of distributions, but not for the use on computers. The advantage of using a function on the computer is twofold. On the one hand, we can easily apply the AJUS system to many distributions, <tt>sapply</tt> may be your friend there. On the other hand, the tolerance used in th AJUS system is applied in a systematic manner. When using human judgement on whether two values are roughly the same or different, a really systematic approach cannot guaranteed. In the <tt>AJUS</tt> function, you can specify the argument <tt>tolerance</tt> to change the tolerance. The AJUS function ignores all differences euqal to or smaller than the tolerance parameter. The package default is 0.1, possibly useful when working with values between 0 and 1, in which case it corresponds to 10 per cent. The <tt>tolerance</tt> parameter is not a trivial choice, and it can affect results.</p>
 
 <h2 class="top">ISD</h2>
-<p>The ISD system by Galtung is another way to reduce complexity, this time for changes over time. The ISD takes a vector with three time points. These three points describe two periods during which changes may occur.<br><b><tt>ISD(distribution)</tt></b> gives you a type and a description of the type.</p>
+<p>The ISD system by Galtung is another way to reduce complexity, this time for changes over time. The ISD takes a vector with three time points. These three points describe two periods during which changes may occur.<br><b><tt>isd(distribution)</tt></b> gives you a type and a description of the type.</p>
 <ul><li>Type 1: increase in both periods</li>
 <li>Type 2: increase in first period, flat in second period</li>
 <li>Type 3: increase in first period, decrease in second period</li>
@@ -47,8 +47,8 @@ Usage is equivalent to <tt>agreement</tt>: <tt>polarization(collapse(c(1,2,4,2,5
 <li>Type 9: decrease in both periods</li></ul>
 
 <h2 class="top">(Multiple) Modes</h2>
-<p>The function <tt>modes</tt> tells you at which position the mode is. This can be used, for instance, in conjunction with the <tt>agreement</tt> function to identify at which point agreement is reached (not only that). The functions accept frequency distributions where multiple positions are the most common ones, which can happen in ordered rating scales. The function <tt>second.modes</tt> additionally gives you the value and position(s) of the second most common value. In addition to the mode and the positions, the functions also indicate whether these values are contiguous (i.e. in neighbouring response categories).<br><br>
-<small>Last update 21 July 2012</small></p>
+<p>The function <tt>modes</tt> tells you at which position the mode is. This can be used, for instance, in conjunction with the <tt>agreement</tt> function to identify at which point agreement is reached (not only that). The functions accept frequency distributions where multiple positions are the most common ones, which can happen in ordered rating scales. The function <tt>secondModes</tt> additionally gives you the value and position(s) of the second most common value. In addition to the mode and the positions, the functions also indicate whether these values are contiguous (i.e. in neighbouring response categories).<br><br>
+<small>Last update 1 December 2012</small></p>
 </div>
 <div id="Menu">
 <a href="index.html" title="Home">Home</a><br>

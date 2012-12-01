@@ -137,7 +137,7 @@ In a typical setting, we would probably use a variable name from a data set (e.g
 \section{AJUS}
 The package includes a few additional functions for frequency vectors. The AJUS classification of distributions is one: \citet{Galtung} introduced a system to classify distributions according to shape. This is a means to reduce complexity. For full details refer to Galtung's book on social research.
 
-\texttt{AJUS(distribution)} gives you the shape or type of the distribution, as well as whether there is a skew. I have added a new type "F" to complement the ones identified by Galtung. The skew is given as -1 for a negative skew, 0 for absence of skew, or +1 for a positive skew.
+\texttt{ajus(distribution)} gives you the shape or type of the distribution, as well as whether there is a skew. I have added a new type "F" to complement the ones identified by Galtung. The skew is given as -1 for a negative skew, 0 for absence of skew, or +1 for a positive skew.
 
 \begin{itemize}
 \item A: unimodal distribution, peak in the middle
@@ -152,7 +152,7 @@ Galtung developed the AJUS system for a somewhat systematic classification of di
 % needs examples for each distribution type, plot some of these
 
 \section{ISD}
-The ISD system by \citet{Galtung} is another way to reduce complexity, this time for changes over  time. The ISD takes a vector with three time points. These three points describe two periods during which changes may occur (that is two transition points). \texttt{ISD(distribution)} gives you a type (i.e the number) and a description of the type (i.e. the description in words).
+The ISD system by \citet{Galtung} is another way to reduce complexity, this time for changes over  time. The ISD takes a vector with three time points. These three points describe two periods during which changes may occur (that is two transition points). \texttt{isd(distribution)} gives you a type (i.e the number) and a description of the type (i.e. the description in words).
 
 \begin{itemize}
 \item Type 1: increase in both periods
@@ -171,7 +171,7 @@ The tolerance parameter works like described in the previous section on AJUS.
 % needs examples for each distribution type, plot some of these
 
 \section{(Multiple) Modes}
-The function \texttt{modes} tells you at which position the mode is. This can be used, for instance, in conjunction with the agreement function to identify at which point agreement is reached (not only that). The function accepts frequency distributions where multiple positions are the most common ones, which can happen in ordered rating scales. The function \texttt{second.modes} additionally gives you the value and position(s) of the second most common value. In addition to the mode and the positions, the functions also indicate whether these values are contiguous (i.e. in neighbouring response categories).
+The function \texttt{modes} tells you at which position the mode is. This can be used, for instance, in conjunction with the agreement function to identify at which point agreement is reached (not only that). The function accepts frequency distributions where multiple positions are the most common ones, which can happen in ordered rating scales. The function \texttt{secondModes} additionally gives you the value and position(s) of the second most common value. In addition to the mode and the positions, the functions also indicate whether these values are contiguous (i.e. in neighbouring response categories).
 
 A \texttt{tolerance} parameter is used to ignore small differences. See the section on AJUS above for details.
 
