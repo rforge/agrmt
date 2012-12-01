@@ -1,8 +1,8 @@
-\name{second.modes}
-\alias{second.modes}
+\name{secondModes}
+\alias{secondModes}
 \title{Most common and second most common values}
 \description{Identifies the most common (multiple) modes for frequency vectors as well as the second most common values.}
-\usage{second.modes(V, pos=FALSE, tolerance=0.1)}
+\usage{secondModes(V, pos=FALSE, tolerance=0.1)}
 \arguments{
   \item{V}{A frequency vector}
   \item{pos}{Categories of frequency vector (optional)}

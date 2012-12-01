@@ -1,8 +1,8 @@
-\name{compare.values}
-\alias{compare.values}
+\name{compareValues}
+\alias{compareValues}
 \title{Compares two values}
 \description{This is a helper function to compare two values.}
-\usage{compare.values(A,B,tolerance=0.1)}
+\usage{compareValues(A,B,tolerance=0.1)}
 \arguments{
 \item{A}{A number}
 \item{B}{A number}
