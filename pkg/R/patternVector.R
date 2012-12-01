@@ -1,4 +1,4 @@
-pattern.vector <-
+patternVector <-
 function(V) {
    # Creates pattern vector from frequency vector
    # Argument: V = frequency vector

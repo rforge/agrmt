@@ -1,4 +1,4 @@
-reduce.vector <-
+reduceVector <-
 function(X) {
   # Helper function to remove all zeros, and then remove repeated values
   # Argument: vector

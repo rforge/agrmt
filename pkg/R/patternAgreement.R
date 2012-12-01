@@ -1,4 +1,4 @@
-pattern.agreement <-
+patternAgreement <-
 function(P, old=FALSE) {
    # Calculates agreement A from a pattern vector
    # Arguments:   P = pattern vector

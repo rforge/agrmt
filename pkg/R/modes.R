@@ -19,7 +19,7 @@ function(V, pos=FALSE, tolerance=0.1) {
   m <- which.max(V) # position of mode
   for (i in 1:k) {  # check each position to see if it is equal to the mode
     # because of the tolerance, frequencies need not be exactly the same
-    if (compare.values(V[i],V[m],tolerance=tolerance)==0) p <- c(p,i) # add position of the mode
+    if (compareValues(V[i],V[m],tolerance=tolerance)==0) p <- c(p,i) # add position of the mode
   }
   # Check whether modes are contiguous (= agreement) (c = {"contiguous", "divided"}
   if ((max(p) - min(p)) < length(p)) c <- TRUE else c <- FALSE

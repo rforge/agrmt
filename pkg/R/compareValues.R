@@ -1,4 +1,4 @@
-compare.values <-
+compareValues <-
 function(A,B,tolerance=0.1) {
   # Helper function: How do two values compare?
   # Arguments: A = value 1

@@ -1,4 +1,4 @@
-AJUS <-
+ajus <-
 function(V, tolerance=0.1) {
   # Determine the shape of a distribution
   # Arguments:         V = frequency vector
@@ -13,7 +13,7 @@ function(V, tolerance=0.1) {
       return(r)}
   x <- NULL         # prepare
   for (i in 1:z) {
-    x[i] <- compare.values(V[i],V[i+1], tolerance=tolerance)
+    x[i] <- compareValues(V[i],V[i+1], tolerance=tolerance)
     }
   # Example vector V gives x = c(1  1 -1  1 -1 -1)
   # or with tolerance=.5:  x = c(0  1  0  1 -1 -1)
@@ -23,7 +23,7 @@ function(V, tolerance=0.1) {
   if (min.x == max.x) A <- "F" else {    # flat distribtion, type F not in AJUS
     if (max.x <  1) A <- "J" else {      # no 1,  thus only 0 or + 1 (single peak at left end)
       if (min.x > -1) A <- "J"  else {   # no -1, thus only 0 or 1   (single peak at right end)
-        xs <- reduce.vector(x)           # remove 0 and repeated values; not use unique(), because I want same values at different positions ("type S")
+        xs <- reduceVector(x)           # remove 0 and repeated values; not use unique(), because I want same values at different positions ("type S")
         if (isTRUE(all.equal(xs,c(1,-1)))) A <- "A" else {
           # isTRUE(all.equal(V[i],m)
           if (isTRUE(all.equal(xs,c(-1,1)))) A <- "U" else A <- "S"
@@ -38,7 +38,7 @@ function(V, tolerance=0.1) {
   # S if: bimodal,  multiple peaks;     polarization; else
   # (3) identify skew
   m <- round(n/2,0) # midpoint of vector V
-  S <- compare.values(sum(V[1:m]),sum(V[m:n]), tolerance=tolerance) # S = skew [-1,0,+1] (negative, symmetric, positive)
+  S <- compareValues(sum(V[1:m]),sum(V[m:n]), tolerance=tolerance) # S = skew [-1,0,+1] (negative, symmetric, positive)
   r <- list(type= A, skew = S)
   return(r)
   }

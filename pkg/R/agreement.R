@@ -14,9 +14,9 @@ function(V, old=FALSE) {
    N <- sum(V)    # number of cases
    R <- V         # remainder
    for (i in 1:k) {                  # repeat for each layer i
-      P <- pattern.vector(R)         # get the pattern vector for layer i
+      P <- patternVector(R)          # get the pattern vector for layer i
       if (max(P) == 0) break         # remainder is empty, all layers are analyzed
-      A <- pattern.agreement(P, old) # agreement A for layer i
+      A <- patternAgreement(P, old)  # agreement A for layer i
       m <- minnz(R)                  # get non-zero minimum of remainder R
       L <- P * m                     # layer i with the values
       w <- sum(L)/N                  # weight of layer i

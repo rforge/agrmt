@@ -1,4 +1,4 @@
-second.modes <-
+secondModes <-
 function(V, pos=FALSE, tolerance=0.1) {
   m1 <- modes(V, tolerance=tolerance, pos=pos)
   V2 <- V[-m1$positions]
