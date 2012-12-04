@@ -10,9 +10,11 @@ function(V, pos=FALSE, tolerance=0.1) {
   # Example 4: modes(c(30,40,500,130,530,50,10),tolerance=30) # will find positions 3 and 5 (500 and 530 nearly same as in the difference smaller or equal to the tolerance)
   if (min(V) < 0) stop("Error: negative values found in frequency vector.")      # input validation
   # This error only occurs if the input is not a frequency vector. Use collapse() to generate a frequency vector.
-  if (!length(pos) == length(V)) { # input validation
-     warning("Warning: length of position vector different from length of frequency vector. Position vector ignored")
-     pos <- FALSE } # simply ignore it, better than stopping outright
+  if (!pos[1]==FALSE) if (is.numeric(pos) == TRUE) { # input validation: if pos argument is provided
+    if (!length(pos) == length(V)) { # pos vector of different length
+       warning("Note: length of position vector different from length of frequency vector. Position vector ignored")
+       pos <- FALSE } # simply ignore it, better than stopping outright
+       }
   k <- length(V)  # number of values
   p <- NULL       # empty for preparation
   if (pos[1]==FALSE) if (is.numeric(pos) == FALSE) pos <- 1:k # no positions provided, assume 1:k (no zero)
