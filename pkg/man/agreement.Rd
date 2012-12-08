@@ -7,7 +7,7 @@
   \item{V}{A frequency vector}
   \item{old}{Optional argument if you wish to use the old algorithm for agreement A, as outlined in van der Eijk's article. There is normally no reason to set the \code{old} argument.}
 }
-\details{This is the main function to calculate agreement. A frequency vector describes the number of observations in a given category. For example, the vector [10,20,30,15,4] describes 10 observations with position 1, 20 observations with position 2, 30 obervations with position 3, 15 observations with position 4, and 4 observations with position 5. At least three categories are required to calculate agreement.}
+\details{This is the main function to calculate agreement. A frequency vector describes the number of observations in a given category. For example, the vector [10,20,30,15,4] describes 10 observations with position 1, 20 observations with position 2, 30 observations with position 3, 15 observations with position 4, and 4 observations with position 5. At least three categories are required to calculate agreement.}
 \value{The function returns the measure of agreement A. A is 1 if there is perfect unimodality (=agreement); A is 0 if there is perfect uniformity; A is -1 if there is perfect bimodality (=lack of agreement)}
 \references{van der Eijk, C. (2001) Measuring agreement in ordered rating scales, Quality and Quantity 35(3):325-341.}
 \author{Didier Ruedin}

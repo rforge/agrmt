@@ -21,8 +21,8 @@ function(V, tolerance=0.1) {
   min.x <- min(x)
   max.x <- max(x)
   if (min.x == max.x) A <- "F" else {    # flat distribtion, type F not in AJUS
-    if (max.x <  1) A <- "J" else {      # no 1,  thus only 0 or + 1 (single peak at left end)
-      if (min.x > -1) A <- "J"  else {   # no -1, thus only 0 or 1   (single peak at right end)
+    if (max.x <  1) A <- "J" else {      # no 1,  thus only 0 or + 1 (single peak at left end)  -- "L"
+      if (min.x > -1) A <- "J"  else {   # no -1, thus only 0 or 1   (single peak at right end) -- "J"
         xs <- reduceVector(x)           # remove 0 and repeated values; not use unique(), because I want same values at different positions ("type S")
         if (isTRUE(all.equal(xs,c(1,-1)))) A <- "A" else {
           # isTRUE(all.equal(V[i],m)
@@ -39,6 +39,9 @@ function(V, tolerance=0.1) {
   # (3) identify skew
   m <- round(n/2,0) # midpoint of vector V
   S <- compareValues(sum(V[1:m]),sum(V[m:n]), tolerance=tolerance) # S = skew [-1,0,+1] (negative, symmetric, positive)
+  # manually set skew for "J" type distributions (necessary because long tails can change value S):
+	if (A == "J" & max.x < 1)  S <- -1 # single peak at left end  -- "L"
+	if (A == "J" & min.x > -1) S <- 1  # single peak at right end -- "J"
   r <- list(type= A, skew = S)
   return(r)
   }
