@@ -20,10 +20,10 @@ function(V, tolerance=0.1) {
   # (2) identify shape
   min.x <- min(x)
   max.x <- max(x)
-  if (min.x == max.x) A <- "F" else {    # flat distribtion, type F not in AJUS
+  if (min.x == 0 & max.x == 0) A <- "F" else {    # flat distribtion, type F not in AJUS
     if (max.x <  1) A <- "J" else {      # no 1,  thus only 0 or + 1 (single peak at left end)  -- "L"
       if (min.x > -1) A <- "J"  else {   # no -1, thus only 0 or 1   (single peak at right end) -- "J"
-        xs <- reduceVector(x)           # remove 0 and repeated values; not use unique(), because I want same values at different positions ("type S")
+        xs <- reduceVector(x)            # remove 0 and repeated values; not use unique(), because I want same values at different positions ("type S")
         if (isTRUE(all.equal(xs,c(1,-1)))) A <- "A" else {
           # isTRUE(all.equal(V[i],m)
           if (isTRUE(all.equal(xs,c(-1,1)))) A <- "U" else A <- "S"
