@@ -12,7 +12,7 @@
 The skew is identified by comparing the sum of values left and right of the midpoint respectively. For J-type of distributions, the skew is identified on the basis of the changes between values. This way long tails cannot influence the skew, and a single peak at the left and right-hand end can be differentiated in all cases.
 
 The aim of the AJUS system is to reduce complexity. Initially the intuition was to classify distributions on an ad-hoc basis (i.e. eye-balling). Using an algorithm is certainly more reliable, and useful if one is interested in classifying (and comparing) a large number of distributions. The argument \code{tolerance}, however is not a trivial choice and can affect results. Use the helper function \code{ajusCheck} to check sensitivity to different values of the tolerance parameter.}
-\value{The function returns a list. The \code{type} returns a string corresponding to the pattern described by Galtung (A,J,U,S) or F. The \code{skew} returns a number to describe the direction of the skew.}
+\value{The function returns a list. The \code{type} returns a string corresponding to the pattern described by Galtung (A,J,U,S) or F. The \code{skew} returns a number to describe the direction of the skew. The \code{pattern} returns the simplified pattern of the distribution. It indicates whether two values were considered the same (0), or if there was an increase (1) or decrease (-1) between two consecutive values. The length of the pattern is equal to the length of the frequency vector minus one.}
 \references{Galtung, J. (1969) Theory and Methods of Social Research. Oslo: Universitetsforlaget.}
 \author{Didier Ruedin}
 \seealso{\code{\link{isd}}, \code{\link{ajusCheck}}, \code{\link{ajusPlot}}}

@@ -42,6 +42,6 @@ function(V, tolerance=0.1) {
   # manually set skew for "J" type distributions (necessary because long tails can change value S):
 	if (A == "J" & max.x < 1)  S <- -1 # single peak at left end  -- "L"
 	if (A == "J" & min.x > -1) S <- 1  # single peak at right end -- "J"
-  r <- list(type= A, skew = S)
+  r <- list(type= A, skew = S, pattern = x)
   return(r)
   }
