@@ -137,19 +137,52 @@ In a typical setting, we would probably use a variable name from a data set (e.g
 \section{AJUS}
 The package includes a few additional functions for frequency vectors. The AJUS classification of distributions is one: \citet{Galtung} introduced a system to classify distributions according to shape. This is a means to reduce complexity. For full details refer to Galtung's book on social research.
 
-\texttt{ajus(distribution)} gives you the shape or type of the distribution, as well as whether there is a skew. I have added a new type "F" to complement the ones identified by Galtung. The skew is given as -1 for a negative skew, 0 for absence of skew, or +1 for a positive skew.
+\texttt{ajus(distribution)} gives you the shape or type of the distribution, as well as whether there is a skew. I have added two new types F and L to complement the ones identified by Galtung. The skew is given as -1 for a negative skew, 0 for absence of skew, or +1 for a positive skew.
+
+You can choose whether to use a strict AJUS system following Galtung, or use the modified AJUSFL system that includes the L and F types. The default is the modified variant. The modified system draws a distinction between J and L distributions, depending on whether they increase or decrease: J types have a peak on the right, L types have the peak on the left. The strict AJUS system has no F type and returns NA instead.
 
 \begin{itemize}
 \item A: unimodal distribution, peak in the middle
-\item J: unimodal, peak at either end
+\item J: unimodal, peak at either end (strict) or peak on right (modified)
+\item L: unimodal, peak on left (modified only)
 \item U: bimodal, peak at both ends
 \item S: bimodal or multi-modal, multiple peaks
-\item F: flat, no peak; this type is new
+\item F: flat, no peak (modified only)
 \end{itemize}
 
 Galtung developed the AJUS system for a somewhat systematic classification of distributions, but not for the use on computers. The advantage of using a function on the computer is twofold. On the one hand, we can easily apply the AJUS system to many distributions, \texttt{sapply} may be your friend there. On the other hand, the \emph{tolerance} used in the AJUS system is applied in a systematic manner. When using human judgement on whether two values are `roughly the same' or different, a really systematic approach cannot guaranteed. In the AJUS function, you can specify the argument \texttt{tolerance} to change the tolerance. The AJUS function ignores all differences euqal to or smaller than the tolerance parameter. The package default is 0.1, possibly useful when working with values between 0 and 1, in which case it corresponds to 10 per cent. The \texttt{tolerance} parameter is not a trivial choice, and it can affect results.
 
-% needs examples for each distribution type, plot some of these
+\begin{Scode}{echo=TRUE,fig=FALSE}
+# Example 1: different types of distributions
+V1 <- c(0,1,0)     # A
+ajus(V1)
+V2 <- c(0,0,1)     # J
+ajus(V2)
+V3 <- c(1,0,1)     # U
+ajus(V3)
+V4 <- c(1,0,1,0)   # S
+ajus(V4)
+V5 <- c(0,0,0)     # F
+ajus(V5)
+V6 <- c(1,0,0)     # L
+ajus(V6)
+ajus(V6, variant="strict") # gives J
+\end{Scode}
+
+Additional functions are provided to use the AJUS system: \texttt{ajusCheck} takes a vector of tolerance values to test the sensitivity of the classification to the tolerance parameter; \texttt{ajusPlot} plots the distribution along with its type and skew. The latter function can deal with missing values, such as when using time series data with missing values.
+
+\begin{Scode}{echo=TRUE, fig=FALSE}
+# Example 2: varying tolerance to check sensitivity
+V7 <- c(0,0,1,2,1)
+ajus(V7, tolerance=0.5)
+ajus(V7, tolerance=1)
+ajusCheck(V7, t=c(0.1, 0.5, 0.6, 1))
+\end{Scode}
+
+\begin{Scode}{echo=TRUE, fig=TRUE}
+# Example 3: plotting AJUS
+ajusPlot(V7)
+\end{Scode}
 
 \section{ISD}
 The ISD system by \citet{Galtung} is another way to reduce complexity, this time for changes over  time. The ISD takes a vector with three time points. These three points describe two periods during which changes may occur (that is two transition points). \texttt{isd(distribution)} gives you a type (i.e the number) and a description of the type (i.e. the description in words).
