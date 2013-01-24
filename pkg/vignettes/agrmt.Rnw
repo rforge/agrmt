@@ -21,7 +21,7 @@
 This package calculates agreement in ordered rating scales. It implements Cees van der Eijk's \citeyearpar{vdE2001} measure of agreement ``A'', which can be used to describe agreement, consensus, or polarization among respondents.
 
 \section{Getting Data In}
-The functions in this package use what I refer to as frequency vectors. A frequency vector describes the number of observations in a given category. For example, the vector [10,20,30,15,4] describes 10 observations with position 1, 20 observations with position 2, 30 obervations with position 3, 15 observations with position 4, and 4 observations with position 5. At least three categories are required to calculate agreement.
+The functions in this package use what I refer to as frequency vectors. A frequency vector describes the number of observations in a given category. For example, the vector [10,20,30,15,4] describes 10 observations with position 1, 20 observations with position 2, 30 observations with position 3, 15 observations with position 4, and 4 observations with position 5. At least three categories are required to calculate agreement.
 
 There are many ways to create frequency vectors, including the \texttt{table} function in R. Your data may already come in the form of a frequency vector. The package provides a helper function \texttt{collapse} to cater with empty cells. Consider a very simple case to illustrate the difference:
 \begin{Scode}{echo=TRUE,fig=FALSE}
@@ -37,7 +37,7 @@ Using \texttt{table} we simply get a summary of the positions and number of obse
 
 \section{Agreement}
 \subsection{Concept}
-Ordered rating scales are a common format in surveys, and often we are interested in the extent to which responses are in agreement (whether there is consensus, whether there is concentration among the responses). Standard deviations are in this case an inappropriate measure. Van der Eijk's measure of agreement A disaggregates frequency distributions into component parts called layers. At the level of these layers, agreement can easily be determined, and the measure of agreement provides the weighted average.
+Ordered rating scales are a common format in surveys, and often we are interested in the extent to which responses are in agreement (whether there is consensus, whether there is concentration among the responses). Standard deviations are in this case an inappropriate measure. Van der Eijk's measure of agreement A dis-aggregates frequency distributions into component parts called layers. At the level of these layers, agreement can easily be determined, and the measure of agreement provides the weighted average.
 
 We can use the example provided by van der Eijk (p.331) to illustrate the use of layers.
 
@@ -116,7 +116,7 @@ agreement(c(1.6,2.6,8.2,21,29.3,27,10.3))    # D66
 When using survey data (or other similarly structured data), it is easy to call \texttt{agreement} together with the helper function and a variable name (e.g. var99): \texttt{agreement(collapse(var99, pos=0:7))}. Subscripting works as expected: \texttt{agreement(collapse(var99[country==\symbol{34}UK\symbol{34}], pos=0:7))}, so \texttt{sapply} plays nicely. %% \symbol{34} to get straight quotes (ASCII)
 
 \subsection{Calculating Polarization}
-The agreement scores are suitable to express polarization, but the numbers are not intuitive to interpret. The function \texttt{polarization} offers easily interpretable values by rescaling agreement A. More precisely, it gives $(1-agreement)/2$. This means that a polarization value of 1 means perfect polarization (bottom-left corner of the figure above), and a value of 0 means perfect agreement. A value of 0.5 corresponds to the `no agreement' in the above graph.
+The agreement scores are suitable to express polarization, but the numbers are not intuitive to interpret. The function \texttt{polarization} offers easily interpretable values by re-scaling agreement A. More precisely, it gives $(1-agreement)/2$. This means that a polarization value of 1 means perfect polarization (bottom-left corner of the figure above), and a value of 0 means perfect agreement. A value of 0.5 corresponds to the `no agreement' in the above graph.
 
 Usage is equivalent to \texttt{agreement}. In the first example, we specify the entire data, use the \texttt{collapse} helper function to determine the frequency vector (note: there are no observations at position 6, even though this position is permitted), and calculate polarization values.
 
@@ -150,7 +150,7 @@ You can choose whether to use a strict AJUS system following Galtung, or use the
 \item F: flat, no peak (modified only)
 \end{itemize}
 
-Galtung developed the AJUS system for a somewhat systematic classification of distributions, but not for the use on computers. The advantage of using a function on the computer is twofold. On the one hand, we can easily apply the AJUS system to many distributions, \texttt{sapply} may be your friend there. On the other hand, the \emph{tolerance} used in the AJUS system is applied in a systematic manner. When using human judgement on whether two values are `roughly the same' or different, a really systematic approach cannot guaranteed. In the AJUS function, you can specify the argument \texttt{tolerance} to change the tolerance. The AJUS function ignores all differences euqal to or smaller than the tolerance parameter. The package default is 0.1, possibly useful when working with values between 0 and 1, in which case it corresponds to 10 per cent. The \texttt{tolerance} parameter is not a trivial choice, and it can affect results.
+Galtung developed the AJUS system for a somewhat systematic classification of distributions, but not for the use on computers. The advantage of using a function on the computer is twofold. On the one hand, we can easily apply the AJUS system to many distributions, \texttt{sapply} may be your friend there. On the other hand, the \emph{tolerance} used in the AJUS system is applied in a systematic manner. When using human judgement on whether two values are `roughly the same' or different, a really systematic approach cannot guaranteed. In the AJUS function, you can specify the argument \texttt{tolerance} to change the tolerance. The AJUS function ignores all differences equal to or smaller than the tolerance parameter. The package default is 0.1, possibly useful when working with values between 0 and 1, in which case it corresponds to 10 per cent. The \texttt{tolerance} parameter is not a trivial choice, and it can affect results.
 
 \begin{Scode}{echo=TRUE,fig=FALSE}
 # Example 1: different types of distributions
@@ -208,7 +208,7 @@ The function \texttt{modes} tells you at which position the mode is. This can be
 
 A \texttt{tolerance} parameter is used to ignore small differences. See the section on AJUS above for details.
 
-Let us look at made-up examples to illustrate the function. The output first shows the categories at which observations occur; use the parameter \texttt{pos} to specify the values. If there are categories with 0 observations, these need to be indicated in the frequency vector accordingly (you might want to use the helper function \texttt{collapse}. If the length of the \texttt{pos} argument does not match the length of the frequency vector, a warning is shown and the \texttt{pos} argument is discarded. Second, it shows the number of observations at each position. This is the frequency vector. The mode is identified, and the position at which it occurs. If there are multiple positions where the mode occurs, these are all listed. Finally, it is stated whether the modes are contiguous (true/false). This factor is interesting if there are multiple modes -- if they are not contigious, this can be understood as polarization; with a single mode it is always `contigious'.
+Let us look at made-up examples to illustrate the function. The output first shows the categories at which observations occur; use the parameter \texttt{pos} to specify the values. If there are categories with 0 observations, these need to be indicated in the frequency vector accordingly (you might want to use the helper function \texttt{collapse}. If the length of the \texttt{pos} argument does not match the length of the frequency vector, a warning is shown and the \texttt{pos} argument is discarded. Second, it shows the number of observations at each position. This is the frequency vector. The mode is identified, and the position at which it occurs. If there are multiple positions where the mode occurs, these are all listed. Finally, it is stated whether the modes are contiguous (true/false). This factor is interesting if there are multiple modes -- if they are not contiguous, this can be understood as polarization; with a single mode it is always `contiguous'.
 
 In the first example, we look at a simple frequency vector. No categories are specified (\texttt{pos} argument not declared), so the categories are assumed to be 1:7 in this case.
 
@@ -233,7 +233,7 @@ This example illustrates the \texttt{pos} argument. The frequency vector from th
 modes(V2,pos=-1:2) # will still find position 3, but give the value of 1 as mode
 \end{Scode}
 
-This example illustrates multiple modes. The frequencies o 528 and 530 are nearly the same, that is to say given the (defaul) tolerance they are considered the same.
+This example illustrates multiple modes. The frequencies o 528 and 530 are nearly the same, that is to say given the (default) tolerance they are considered the same.
 
 \begin{Scode}{echo=TRUE,fig=FALSE}
 # Example 4: similar values
@@ -246,7 +246,7 @@ modes(V3, tolerance=30) # will find positions 3 and 5 (510 and 530 are nearly th
 \section{Going Further}
 For further documentation, please refer to the original contributions by \citet{vdE2001} and \citet{Galtung}, and refer to the package help files.
 
-\bibliographystyle{chicago}
+\bibliographystyle{plainnat}
 
 \bibliography{agrmt} % vdE2001, Galtung
 

@@ -1,7 +1,7 @@
 \name{ajusPlot}
 \alias{ajusPlot}
 \title{Plot vector with AJUS type}
-\description{Plot a frequency vector aong with its AJUS type.}
+\description{Plot a frequency vector among with its AJUS type.}
 \usage{ajusPlot(V, tolerance=0.1, variant="modified")}
 \arguments{
   \item{V}{A frequency vector}
