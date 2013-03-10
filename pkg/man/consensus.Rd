@@ -10,7 +10,7 @@
 
 If you come across an error that the vector supplied does not contain whole numbers, try \code{round(V,0)} to remove any detritus from calculating the frequency vetor.}
 \value{The function returns the measure of consensus. It is 1 if there is perfect uniformity; it is 0 if there is perfect bimodality (=lack of agreement)}
-\references{Tastle, W., and M. Wierman. 2007. Consensus and dissention: A measure of ordinal dispersion. International Journal of Approximate Reasoning 45 (3): 531-545.}
+\references{Tastle, W., and M. Wierman. 2007. Consensus and dissention: A measure of ordinal dispersion. International Journal of Approximate Reasoning 45(3): 531-545.}
 \author{Didier Ruedin}
 \seealso{\code{\link{agreement}}}
 \examples{
