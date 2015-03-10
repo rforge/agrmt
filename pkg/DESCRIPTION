@@ -1,7 +1,7 @@
 Package: agrmt
 Type: Package
 Title: Calculate Agreement or Consensus in Ordered Rating Scales
-Version: 1.39.0
+Version: 1.39.1
 Date: 2015-03-04
 Author: Didier Ruedin
 Maintainer: Didier Ruedin <didier.ruedin@wolfson.oxon.org>
