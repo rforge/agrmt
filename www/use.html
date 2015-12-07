@@ -22,7 +22,8 @@
     </nav>
   </header>
 <section>
-<h1>Agreement <i>A</i> in R</h1><p>Please refer to the built-in documentation and the package vignette for further details. This page does <i>not</i> document all features.</p>
+<h1>Agreement <i>A</i> in R</h1>
+<p>Please refer to the built-in documentation and the package vignette for further details. This page does <i>not</i> document all features.</p>
 <h2 class="top">Agreement</h2>
 <p>Van der Eijk gives the example of respondents placing political parties on a 7-point rating scale.</p>
 <table><tr><th>Position</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th></tr>
@@ -46,29 +47,32 @@ Usage is equivalent to <kbd>agreement</kbd>: <kbd>polarization(collapse(c(1, 2, 
 <h2 class="top">AJUS</h2>
 <p>Galtung introduced a system to classify distributions according to shape. This is a means to reduce complexity.<br>For further details, refer to Galtung, J. 1969. <i>Theory and Methods of Social Research.</i> Oslo: Universitetsforlaget.<br>
 <b><kbd>ajus(distribution)</kbd></b> gives you the shape or type, as well as whether there is a skew. I have added two new types (&quot;F&quot; and &quot;L&quot;) to complement the ones identified by Galtung. You can choose whether to use a strict AJUS system following Galtung, or use the modified AJUSFL system that includes the L and F types. The default is the modified variant. The skew is given as -1 for a negative skew, 0 for absence of skew, or +1 for a positive skew.</p>
-<ul><li>A: unimodal distribution, peak in the middle</li>
-<li>J: unimodal, peak at right end</li>
-<li>L: unimodal, peak at left end</li>
-<li>U: bimodal, peak at both ends</Li>
-<li>S: bimodal or multi-modal, multiple peaks</li>
-<li>F: flat, no peak; this type is new</li></ul>
+
+<p>A: unimodal distribution, peak in the middle</p>
+<p>J: unimodal, peak at right end</p>
+<p>L: unimodal, peak at left end</p>
+<p>U: bimodal, peak at both ends</p>
+<p>S: bimodal or multi-modal, multiple peaks</p>
+<p>F: flat, no peak; this type is new</p>
+
 <p>Galtung developed the AJUS system for a somewhat systematic classification of distributions, but not for the use on computers. The advantage of using a function on the computer is twofold. On the one hand, we can easily apply the AJUS system to many distributions, <kbd>sapply</kbd> may be your friend there. On the other hand, the tolerance used in th AJUS system is applied in a systematic manner. When using human judgement on whether two values are roughly the same or different, a really systematic approach cannot guaranteed. In the <kbd>AJUS</kbd> function, you can specify the argument <kbd>tolerance</kbd> to change the tolerance. The AJUS function ignores all differences euqal to or smaller than the tolerance parameter. The package default is 0.1, possibly useful when working with values between 0 and 1, in which case it corresponds to 10 per cent. The <kbd>tolerance</kbd> parameter is not a trivial choice, and it can affect results.</p>
 <p>See the package help or vignette for the helper functions <kbd>ajusPlot</kbd> and <kbd>ajusCheck</kbd>. These allow a graphical inspection of distribution along with their classification and sensitivity checks with regard to the tolerance parameter.</p>
 
 <h2 class="top">ISD</h2>
 <p>The ISD system by Galtung is another way to reduce complexity, this time for changes over time. The ISD takes a vector with three time points. These three points describe two periods during which changes may occur.<br><b><kbd>isd(distribution)</kbd></b> gives you a type and a description of the type.</p>
-<ul><li>Type 1: increase in both periods</li>
-<li>Type 2: increase in first period, flat in second period</li>
-<li>Type 3: increase in first period, decrease in second period</li>
-<li>Type 4: flat in first period, increase in second period</li>
-<li>Type 5: flat in both periods</li>
-<li>Type 6: flat in first period, decrease in second period</li>
-<li>Type 7: decrease in first period, increase in second period</li>
-<li>Type 8: decrease in first period, flat in second period</li>
-<li>Type 9: decrease in both periods</li></ul>
+
+<p>Type 1: increase in both periods</p>
+<p>Type 2: increase in first period, flat in second period</p>
+<p>Type 3: increase in first period, decrease in second period</p>
+<p>Type 4: flat in first period, increase in second period</p>
+<p>Type 5: flat in both periods</p>
+<p>Type 6: flat in first period, decrease in second period</p>
+<p>Type 7: decrease in first period, increase in second period</p>
+<p>Type 8: decrease in first period, flat in second period</p>
+<p>Type 9: decrease in both periods</p>
 
 <h2 class="top">(Multiple) Modes</h2>
 <p>The function <kbd>modes</kbd> tells you at which position the mode is. This can be used, for instance, in conjunction with the <kbd>agreement</kbd> function to identify at which point agreement is reached (not only that). The functions accept frequency distributions where multiple positions are the most common ones, which can happen in ordered rating scales. The function <kbd>secondModes</kbd> additionally gives you the value and position(s) of the second most common value. In addition to the mode and the positions, the functions also indicate whether these values are contiguous (i.e. in neighbouring response categories).</p>
-<p class="small">Last update 3 April 2015</p>
+<p class="small">Last update 12 December 2015</p>
 </section>
 </body></html>
