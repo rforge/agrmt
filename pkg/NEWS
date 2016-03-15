@@ -1,7 +1,12 @@
+agrmt 1.40.2
+------------
+
+- DOI in package description
+
 agrmt 1.40.1
 ------------
 
-- Montalvo Reynal-Querol can now handle non-standardized frequency vectors
+- Montalvo Reynal-Querol (MRQ) can now handle non-standardized frequency vectors
 - fixes in documentation
 
 agrmt 1.40
