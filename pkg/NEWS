@@ -1,4 +1,9 @@
+agrmt 1.40.4
+------------
+- fixed MRQ standardization
+
 agrmt 1.40.3
+------------
 
 - reference in MRQ.Rd to 2005 AER article, consistent with the formula used
 
